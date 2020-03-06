@@ -1,4 +1,4 @@
-package od.twins.clabr.ui
+package od.twins.clabr.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

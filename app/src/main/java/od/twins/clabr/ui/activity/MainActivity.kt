@@ -1,4 +1,4 @@
-package od.twins.clabr.ui
+package od.twins.clabr.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
