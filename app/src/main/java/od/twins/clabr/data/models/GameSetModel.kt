@@ -1,6 +1,6 @@
 package od.twins.clabr.data.models
 
-data class SetGameModel(
+data class GameSetModel(
     val timeStart: Long
 //    val timeEnd: Long,
 //    val playerList: List<String>,

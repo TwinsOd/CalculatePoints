@@ -12,7 +12,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import od.twins.clabr.R
-import od.twins.clabr.data.models.SetGameModel
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -37,12 +36,10 @@ class HomeFragment : Fragment() {
             adapter = historyAdapter
         }
 
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            //            textView.text = it
+        homeViewModel.gameSetList.observe(viewLifecycleOwner, Observer {
+            historyAdapter.updateUsers(it)
         })
-
-        historyAdapter.addNewGame(SetGameModel(timeStart = 515151515))
-        historyAdapter.addNewGame(SetGameModel(timeStart = 989898989))
+        homeViewModel.getHistoryList()
         return root
     }
 }
