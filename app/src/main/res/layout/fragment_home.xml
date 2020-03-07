@@ -19,6 +19,8 @@
         android:text="@string/start_new_game"
         android:textAlignment="center"
         android:textSize="21sp"
+        tools:context=".ui.home.HomeFragment"
+        tools:listitem="@layout/item_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
