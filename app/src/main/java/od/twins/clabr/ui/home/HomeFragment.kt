@@ -27,9 +27,8 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val textView: TextView = root.findViewById(R.id.create_view)
-        textView.setOnClickListener { _ ->
-            Navigation.findNavController(root)
-                .navigate(R.id.action_navigation_home_to_newGameFragment)
+        textView.setOnClickListener { v ->
+            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_newGameFragment)
         }
 
         val historyListView: RecyclerView = root.findViewById(R.id.history_list_view);
