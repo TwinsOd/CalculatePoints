@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="od.twins.clabr.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_newGameFragment"
+            app:destination="@id/newGameFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,9 @@
         android:name="od.twins.clabr.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="od.twins.clabr.ui.newGame.NewGameFragment"
+        android:label="fragment_new_game"
+        tools:layout="@layout/fragment_new_game" />
 </navigation>

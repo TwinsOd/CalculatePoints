@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import od.twins.clabr.R
@@ -26,7 +27,10 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val textView: TextView = root.findViewById(R.id.create_view)
-        textView.setOnClickListener { _ -> historyAdapter.addNewGame(SetGameModel(timeStart = 515151515)) }
+        textView.setOnClickListener { _ ->
+            Navigation.findNavController(root)
+                .navigate(R.id.action_navigation_home_to_newGameFragment)
+        }
 
         val historyListView: RecyclerView = root.findViewById(R.id.history_list_view);
         historyListView.apply {
@@ -37,6 +41,9 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             //            textView.text = it
         })
+
+        historyAdapter.addNewGame(SetGameModel(timeStart = 515151515))
+        historyAdapter.addNewGame(SetGameModel(timeStart = 989898989))
         return root
     }
 }
