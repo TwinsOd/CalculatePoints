@@ -3,8 +3,15 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
     <string name="start_new_game">Начать новую игру</string>
     <string name="count_players">Количество играков:</string>
     <string name="Points">Очки:</string>
     <string name="next">Далее</string>
+    <string name="fill_players_name">Заполните имена в порядке посадки играков</string>
+    <string name="player_1">Игрок 1</string>
+    <string name="player_2">Игрок 2</string>
+    <string name="player_3">Игрок 3</string>
+    <string name="player_4">Игрок 4</string>
+    <string name="used_names">Ранее использованые имена</string>
 </resources>
