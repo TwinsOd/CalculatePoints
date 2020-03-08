@@ -23,13 +23,13 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_dashboard,
-                R.id.navigation_notifications
+                R.id.navigation_info
             )
         )
         navController.addOnDestinationChangedListener { _, destination, _ ->
             run {
                 when (destination.id) {
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications -> navView.visibility =
+                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_info -> navView.visibility =
                         View.VISIBLE
                     else -> navView.visibility = View.GONE
                 }

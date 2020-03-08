@@ -14,4 +14,6 @@
     <string name="player_3">Игрок 3</string>
     <string name="player_4">Игрок 4</string>
     <string name="used_names">Ранее использованые имена</string>
+    <string name="rules">Правила</string>
+    <string name="games">Игры</string>
 </resources>

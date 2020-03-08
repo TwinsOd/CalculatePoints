@@ -1,4 +1,4 @@
-package od.twins.clabr.ui.dashboard
+package od.twins.clabr.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import od.twins.clabr.R
 
-class DashboardFragment : Fragment() {
+class InfoFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var infoViewModel: InfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        val root = inflater.inflate(R.layout.fragment_info, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
 
-        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        infoViewModel = ViewModelProvider(this).get(InfoViewModel::class.java)
+        infoViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
