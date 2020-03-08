@@ -4,8 +4,8 @@ data class GameSetModel(
     val timeStart: Long
 ) {
     val timeEnd: Long = 0
-    val typeGame: Int = -1
-    val limit: Int = 1
+    val typeGame: GameType = GameType.TWO_ON_TWO
+    val limit: LimitPoints = LimitPoints.BIG
     val playerList: List<String> = listOf()
     val pointList: List<CountModel> = listOf()
 }

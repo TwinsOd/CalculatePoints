@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/parent_margin"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -20,7 +21,6 @@
         android:textAlignment="center"
         android:textSize="21sp"
         tools:listitem="@layout/item_user"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
