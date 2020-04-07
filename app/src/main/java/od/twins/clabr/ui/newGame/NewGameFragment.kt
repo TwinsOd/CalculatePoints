@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButtonToggleGroup
@@ -12,10 +13,13 @@ import od.twins.clabr.R
 import od.twins.clabr.data.models.GameType
 import od.twins.clabr.data.models.LimitPoints
 
+public const val ARG_GAME_TYPE = "arg_game_type"
+public const val ARG_POINT_LIMIT = "arg_point_limit"
+
 class NewGameFragment : Fragment() {
     val TAG = "NewGameFragment"
-    lateinit var gameType: GameType
-    lateinit var pointLimit: LimitPoints
+    private var gameType: GameType? = null
+    private var pointLimit: LimitPoints? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +29,21 @@ class NewGameFragment : Fragment() {
         val root: View = inflater.inflate(R.layout.fragment_new_game, container, false)
         val nextView: Button = root.findViewById(R.id.next_view)
         nextView.setOnClickListener { v ->
-            Navigation.findNavController(v).navigate(R.id.action_newGameFragment_to_namesFragment)
+            when {
+                gameType == null -> {
+                    Toast.makeText(v.context, "Check type", Toast.LENGTH_LONG).show()
+                }
+                pointLimit == null -> {
+                    Toast.makeText(v.context, "Check points", Toast.LENGTH_LONG).show()
+                }
+                else -> run {
+                    val bundle = Bundle()
+                    bundle.putSerializable(ARG_GAME_TYPE, gameType)
+                    bundle.putSerializable(ARG_POINT_LIMIT, pointLimit)
+                    Navigation.findNavController(v)
+                        .navigate(R.id.action_newGameFragment_to_namesFragment, bundle)
+                }
+            }
         }
 
         val typeGameView: MaterialButtonToggleGroup =

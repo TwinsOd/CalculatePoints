@@ -75,16 +75,16 @@
                 <Button
                     android:id="@+id/small_game"
                     style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="501" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="501" />
 
                 <Button
                     android:id="@+id/big_game"
                     style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1001" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1001" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
         </LinearLayout>
