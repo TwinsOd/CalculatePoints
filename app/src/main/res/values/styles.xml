@@ -16,9 +16,32 @@
         <item name="android:layout_marginTop">4dp</item>
     </style>
 
+    <style name="points_input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
     <style name="name_edit_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="next_fab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/parent_margin</item>
+    </style>
+
+    <style name="name_card">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@color/light_grey</item>
     </style>
 
 </resources>

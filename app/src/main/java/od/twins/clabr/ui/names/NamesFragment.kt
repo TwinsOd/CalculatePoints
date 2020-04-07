@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import od.twins.clabr.R
 import od.twins.clabr.data.models.GameType
@@ -49,6 +52,18 @@ class NamesFragment : Fragment() {
             adapter = NameRecyclerViewAdapter(DummyContent.ITEMS, listener)
         }
 
+        val nextView: FloatingActionButton = root.findViewById(R.id.next_view)
+        nextView.setOnClickListener { v ->
+            when (gameType) {
+                GameType.TWO, GameType.THREE, GameType.FOUR ->
+                    Toast.makeText(root.context, "In development", Toast.LENGTH_LONG).show()
+                GameType.TWO_ON_TWO -> {
+                    Navigation.findNavController(v)
+                        .navigate(R.id.action_namesFragment_to_twoTwoCalculateFragment)
+                }
+            }
+        }
+
         val player1Layout: TextInputLayout = root.findViewById(R.id.player_1)
         val player2Layout: TextInputLayout = root.findViewById(R.id.player_2)
         val player3Layout: TextInputLayout = root.findViewById(R.id.player_3)
@@ -75,49 +90,8 @@ class NamesFragment : Fragment() {
         return root
     }
 
-
-/*    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onListFragmentInteraction(item: DummyItem?)
-    }
-
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            NamesFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
 }

@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import od.twins.clabr.R
 import od.twins.clabr.data.models.GameType
 import od.twins.clabr.data.models.LimitPoints
@@ -27,7 +27,7 @@ class NewGameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root: View = inflater.inflate(R.layout.fragment_new_game, container, false)
-        val nextView: Button = root.findViewById(R.id.next_view)
+        val nextView: FloatingActionButton = root.findViewById(R.id.next_view)
         nextView.setOnClickListener { v ->
             when {
                 gameType == null -> {

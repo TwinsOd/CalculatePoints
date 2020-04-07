@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,95 +7,101 @@
     android:layout_marginHorizontal="16dp"
     tools:context=".ui.newGame.NewGameFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/parent_margin"
-            android:text="@string/count_players"
-            android:textSize="@dimen/title_size" />
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/type_game_toggle_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true">
-
-            <Button
-                android:id="@+id/two_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2" />
-
-            <Button
-                android:id="@+id/three_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3" />
-
-            <Button
-                android:id="@+id/four_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4" />
-
-            <Button
-                android:id="@+id/pair_button"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2x2" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/parent_margin"
-            android:text="@string/Points"
-            android:textSize="@dimen/title_size" />
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        tools:context=".ui.newGame.NewGameFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/parent_margin"
+                android:text="@string/count_players"
+                android:textSize="@dimen/title_size" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/point_limit_toggle_button"
+                android:id="@+id/type_game_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleSelection="true">
 
                 <Button
-                    android:id="@+id/small_game"
+                    android:id="@+id/two_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="501" />
+                    android:text="2" />
 
                 <Button
-                    android:id="@+id/big_game"
+                    android:id="@+id/three_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1001" />
+                    android:text="3" />
+
+                <Button
+                    android:id="@+id/four_button"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/pair_button"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2x2" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/parent_margin"
+                android:text="@string/Points"
+                android:textSize="@dimen/title_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/point_limit_toggle_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true">
+
+                    <Button
+                        android:id="@+id/small_game"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="501" />
+
+                    <Button
+                        android:id="@+id/big_game"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1001" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </LinearLayout>
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <Button
-            android:id="@+id/next_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:text="@string/next" />
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next_view"
+        android:src="@drawable/ic_navigate_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/next_fab" />
+</androidx.constraintlayout.widget.ConstraintLayout>

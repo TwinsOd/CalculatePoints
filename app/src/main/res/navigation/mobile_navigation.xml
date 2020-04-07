@@ -39,5 +39,14 @@
         android:id="@+id/namesFragment"
         android:name="od.twins.clabr.ui.names.NamesFragment"
         android:label="fragment_names"
-        tools:layout="@layout/fragment_names" />
+        tools:layout="@layout/fragment_names">
+        <action
+            android:id="@+id/action_namesFragment_to_twoTwoCalculateFragment"
+            app:destination="@id/twoTwoCalculateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/twoTwoCalculateFragment"
+        android:name="od.twins.clabr.ui.calculate.TwoTwoCalculateFragment"
+        android:label="fragment_two_two_calculate"
+        tools:layout="@layout/fragment_two_two_calculate" />
 </navigation>

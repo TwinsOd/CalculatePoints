@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.calculate.TwoTwoCalculateFragment">
+
+
+    <LinearLayout
+        android:id="@+id/card_1"
+        style="@style/name_card"
+        app:layout_constraintEnd_toStartOf="@id/card_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name_1_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вася" />
+
+        <TextView
+            android:id="@+id/name_3_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Коля" />
+
+        <TextView
+            android:id="@+id/points_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="772" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/card_2"
+        style="@style/name_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card_1"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name_2_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вася" />
+
+        <TextView
+            android:id="@+id/name_4_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Коля" />
+
+        <TextView
+            android:id="@+id/points_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="682" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/game_point_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Общее количество очков:"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="182"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/game_point_title"
+        app:layout_constraintTop_toBottomOf="@id/card_1"
+        app:layout_constraintTop_toTopOf="@id/game_point_title" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/player_1"
+        style="@style/points_input_layout"
+        android:hint="Пара 1"
+        app:counterMaxLength="20"
+        app:layout_constraintStart_toStartOf="@+id/card_1"
+        app:layout_constraintTop_toBottomOf="@+id/game_point_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/name_edit_view"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/more_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_more_vert"
+        app:layout_constraintBottom_toBottomOf="@+id/player_1"
+        app:layout_constraintStart_toEndOf="@+id/player_1"
+        app:layout_constraintTop_toTopOf="@+id/player_1" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/player_2"
+        style="@style/points_input_layout"
+        android:hint="Пара 2"
+        app:counterMaxLength="20"
+        app:layout_constraintStart_toStartOf="@+id/card_2"
+        app:layout_constraintTop_toBottomOf="@+id/game_point_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/name_edit_view"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/more_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_more_vert"
+        app:layout_constraintBottom_toBottomOf="@+id/player_2"
+        app:layout_constraintStart_toEndOf="@+id/player_2"
+        app:layout_constraintTop_toTopOf="@+id/player_2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
