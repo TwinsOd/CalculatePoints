@@ -17,6 +17,10 @@
     <string name="rules">Правила</string>
     <string name="games">Игры</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="game_case_list">
+        <item>Бейт</item>
+        <item>Без взятие</item>
+        <item>-100</item>
+        <item>Висячка</item>
+    </string-array>
 </resources>
