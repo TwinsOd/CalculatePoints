@@ -19,8 +19,6 @@
     <style name="points_input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
     </style>
 
     <style name="name_edit_view">
@@ -42,6 +40,13 @@
         <item name="android:padding">16dp</item>
         <item name="android:elevation">4dp</item>
         <item name="android:background">@color/light_grey</item>
+    </style>
+
+    <style name="name_text_by_game">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/text_black</item>
     </style>
 
 </resources>

@@ -10,23 +10,15 @@ import java.util.*
  */
 object DummyContent {
 
-    /**
-     * An array of sample (dummy) items.
-     */
     val ITEMS: MutableList<DummyItem> = ArrayList()
-
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    val ITEM_MAP: MutableMap<String, DummyItem> = HashMap()
-
-    private val COUNT = 25
+    private val ITEM_MAP: MutableMap<String, DummyItem> = HashMap()
 
     init {
-        // Add some sample items.
-        for (i in 1..COUNT) {
-            addItem(createDummyItem(i))
-        }
+        addItem(DummyItem("1", "Ян", ""))
+        addItem(DummyItem("2", "Миша", ""))
+        addItem(DummyItem("3", "Вадик", ""))
+        addItem(DummyItem("4", "Леха", ""))
+        addItem(DummyItem("5", "Месси", ""))
     }
 
     private fun addItem(item: DummyItem) {
@@ -35,7 +27,7 @@ object DummyContent {
     }
 
     private fun createDummyItem(position: Int): DummyItem {
-        return DummyItem(position.toString(), "Item " + position, makeDetails(position))
+        return DummyItem(position.toString(), "Item $position", makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
