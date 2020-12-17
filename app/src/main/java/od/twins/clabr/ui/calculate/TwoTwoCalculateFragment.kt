@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import od.twins.clabr.R
-import od.twins.clabr.data.utils.onCreateListDialog
+import od.twins.clabr.utils.onCreateListDialog
 
 
 class TwoTwoCalculateFragment : Fragment(), View.OnClickListener {

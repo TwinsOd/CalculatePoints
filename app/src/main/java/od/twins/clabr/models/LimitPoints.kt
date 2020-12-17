@@ -1,4 +1,4 @@
-package od.twins.clabr.data.models
+package od.twins.clabr.models
 
 enum class LimitPoints {
     SMALL,

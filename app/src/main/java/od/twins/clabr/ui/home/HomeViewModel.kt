@@ -2,7 +2,7 @@ package od.twins.clabr.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import od.twins.clabr.data.models.GameSetModel
+import od.twins.clabr.models.GameSetModel
 
 class HomeViewModel : ViewModel() {
     val gameSetList = MutableLiveData<List<GameSetModel>>()

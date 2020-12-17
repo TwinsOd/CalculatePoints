@@ -1,4 +1,4 @@
-package od.twins.clabr.data.models
+package od.twins.clabr.models
 
 data class GameSetModel(
     val timeStart: Long

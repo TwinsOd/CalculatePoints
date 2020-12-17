@@ -1,4 +1,4 @@
-package od.twins.clabr.data.utils
+package od.twins.clabr.utils
 
 import android.app.AlertDialog
 import android.app.Dialog

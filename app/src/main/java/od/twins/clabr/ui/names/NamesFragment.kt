@@ -12,8 +12,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_names.*
 import od.twins.clabr.R
-import od.twins.clabr.data.models.GameType
-import od.twins.clabr.data.models.LimitPoints
+import od.twins.clabr.models.GameType
+import od.twins.clabr.models.LimitPoints
 import od.twins.clabr.ui.names.dummy.DummyContent
 import od.twins.clabr.ui.names.dummy.DummyContent.DummyItem
 import od.twins.clabr.ui.newGame.ARG_GAME_TYPE

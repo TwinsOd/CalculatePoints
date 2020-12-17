@@ -10,8 +10,8 @@ import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import od.twins.clabr.R
-import od.twins.clabr.data.models.GameType
-import od.twins.clabr.data.models.LimitPoints
+import od.twins.clabr.models.GameType
+import od.twins.clabr.models.LimitPoints
 
 public const val ARG_GAME_TYPE = "arg_game_type"
 public const val ARG_POINT_LIMIT = "arg_point_limit"
