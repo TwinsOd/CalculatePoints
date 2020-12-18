@@ -3,39 +3,32 @@ package od.twins.clabr.ui.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import kotlinx.android.synthetic.main.activity_main.*
 import od.twins.clabr.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.BaseScreen)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_dashboard,
-                R.id.navigation_info
-            )
-        )
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        val navigationController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navigationController.addOnDestinationChangedListener { _, destination, _ ->
             run {
                 when (destination.id) {
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_info -> navView.visibility =
+                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_info -> nav_view.visibility =
                         View.VISIBLE
-                    else -> navView.visibility = View.GONE
+                    else -> nav_view.visibility = View.GONE
                 }
             }
         }
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        setupBottomNav(navigationController)
+    }
+
+    private fun setupBottomNav(navigationController: NavController) {
+        nav_view?.let { NavigationUI.setupWithNavController(it, navigationController) }
     }
 }

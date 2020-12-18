@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_home.*
 import od.twins.clabr.R
 
 class HomeFragment : Fragment() {
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
     private val historyAdapter: HistoryAdapter = HistoryAdapter(arrayListOf())
 
     override fun onCreateView(
@@ -22,24 +21,25 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-        val textView: TextView = root.findViewById(R.id.create_view)
-        textView.setOnClickListener { v ->
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        create_view.setOnClickListener { v ->
             Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_newGameFragment)
         }
 
-        val historyListView: RecyclerView = root.findViewById(R.id.history_list_view);
-        historyListView.apply {
+        history_list_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = historyAdapter
         }
 
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+//        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.gameSetList.observe(viewLifecycleOwner, Observer {
             historyAdapter.updateUsers(it)
         })
         homeViewModel.getHistoryList()
-        return root
     }
 }

@@ -1,10 +1,11 @@
 package od.twins.clabr.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import od.twins.clabr.models.GameSetModel
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel @ViewModelInject constructor() : ViewModel() {
     val gameSetList = MutableLiveData<List<GameSetModel>>()
 
     fun getHistoryList() {
