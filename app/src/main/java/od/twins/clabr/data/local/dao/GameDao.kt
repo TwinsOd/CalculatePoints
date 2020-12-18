@@ -1,9 +1,6 @@
 package od.twins.clabr.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import od.twins.clabr.models.Game
 
@@ -17,4 +14,7 @@ interface GameDao {
 
     @Query("DELETE FROM ${Game.TABLE_NAME}")
     suspend fun deleteAll()
+
+    @Delete
+    fun deleteGame(game: Game)
 }

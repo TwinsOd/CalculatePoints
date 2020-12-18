@@ -6,19 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_user.view.*
 import od.twins.clabr.R
-import od.twins.clabr.models.GameSetModel
+import od.twins.clabr.models.Game
 
-class HistoryAdapter(var gameSets: ArrayList<GameSetModel>) :
+class HistoryAdapter(var game: ArrayList<Game>) :
     RecyclerView.Adapter<HistoryAdapter.HistoryHolder>() {
 
-    fun updateUsers(newGameSets: List<GameSetModel>) {
-        gameSets.clear()
-        gameSets.addAll(newGameSets)
-        notifyDataSetChanged()
-    }
-
-    fun addNewGame(gameSetModel: GameSetModel) {
-        gameSets.add(0, gameSetModel)
+    fun updateUsers(newGameSets: List<Game>) {
+        game.clear()
+        game.addAll(newGameSets)
         notifyDataSetChanged()
     }
 
@@ -26,17 +21,18 @@ class HistoryAdapter(var gameSets: ArrayList<GameSetModel>) :
         LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
     )
 
-    override fun getItemCount() = gameSets.size
+    override fun getItemCount() = game.size
+
     override fun onBindViewHolder(holder: HistoryHolder, position: Int) {
-        holder.bind(gameSets[position])
+        holder.bind(game[position])
     }
 
 
     class HistoryHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val startTimeView = view.start_time_view
 
-        fun bind(gameSetModel: GameSetModel) {
-            startTimeView.text = "L" + gameSetModel.timeStart
+        fun bind(game: Game) {
+            startTimeView.text = "L" + game.gameId
         }
     }
 }

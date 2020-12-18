@@ -1,19 +1,15 @@
 package od.twins.clabr.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import od.twins.clabr.models.GameSetModel
+import androidx.lifecycle.asLiveData
+import od.twins.clabr.data.repository.DataBaseRepository
+import od.twins.clabr.models.Game
 
-class HomeViewModel @ViewModelInject constructor() : ViewModel() {
-    val gameSetList = MutableLiveData<List<GameSetModel>>()
+class HomeViewModel @ViewModelInject constructor(
+    dataBaseRepository: DataBaseRepository
+) : ViewModel() {
+    val gameList: LiveData<List<Game>> = dataBaseRepository.allGames.asLiveData()
 
-    fun getHistoryList() {
-        val list = listOf(
-            GameSetModel(timeStart = 515151515),
-            GameSetModel(timeStart = 77777),
-            GameSetModel(timeStart = 99999)
-        )
-        gameSetList.value = list
-    }
 }

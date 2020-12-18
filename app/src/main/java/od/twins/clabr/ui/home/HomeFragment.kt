@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import od.twins.clabr.R
 
+@ExperimentalCoroutinesApi
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private val historyAdapter: HistoryAdapter = HistoryAdapter(arrayListOf())
@@ -36,10 +39,9 @@ class HomeFragment : Fragment() {
             adapter = historyAdapter
         }
 
-//        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        homeViewModel.gameSetList.observe(viewLifecycleOwner, Observer {
+        homeViewModel.gameList.observe(viewLifecycleOwner) {
             historyAdapter.updateUsers(it)
-        })
-        homeViewModel.getHistoryList()
+            list_is_empty.visibility = if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
+        }
     }
 }
