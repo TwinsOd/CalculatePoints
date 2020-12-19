@@ -16,17 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="od.twins.clabr.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_info"
-        android:name="od.twins.clabr.ui.notifications.InfoFragment"
-        android:label="@string/rules"
-        tools:layout="@layout/fragment_info" />
-    <fragment
         android:id="@+id/newGameFragment"
         android:name="od.twins.clabr.ui.startSettings.NewGameFragment"
         android:label="fragment_new_game"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -34,14 +35,23 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_newGameFragment)
         }
 
+        rules_layout.setOnClickListener {
+            Toast.makeText(
+                context,
+                getString(R.string.in_development),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         history_list_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = historyAdapter
         }
 
         homeViewModel.gameList.observe(viewLifecycleOwner) {
-            historyAdapter.updateUsers(it)
             list_is_empty.visibility = if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
+            history_list_view.visibility = if (!it.isNullOrEmpty()) View.VISIBLE else View.GONE
+            historyAdapter.updateUsers(it)
         }
     }
 }
