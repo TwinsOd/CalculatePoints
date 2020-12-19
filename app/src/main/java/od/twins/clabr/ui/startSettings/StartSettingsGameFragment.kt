@@ -1,4 +1,4 @@
-package od.twins.clabr.ui.newGame
+package od.twins.clabr.ui.startSettings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -54,7 +54,7 @@ class NewGameFragment : Fragment() {
                     when (checkedId) {
                         R.id.two_button -> gameType = GameType.TWO
                         R.id.three_button -> gameType = GameType.THREE
-                        R.id.four_button -> gameType = GameType.FOUR
+//                        R.id.four_button -> gameType = GameType.FOUR
                         R.id.pair_button -> gameType = GameType.TWO_ON_TWO
                     }
                 }

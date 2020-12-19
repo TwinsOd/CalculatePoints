@@ -1,10 +1,12 @@
 package od.twins.clabr
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import od.twins.clabr.utils.isNight
 import timber.log.Timber
 
 @HiltAndroidApp
@@ -16,5 +18,14 @@ class ClaborApp : Application() {
         applicationScope.launch {
             Timber.plant(Timber.DebugTree())
         }
+
+        // Get UI mode and set
+        val mode = if (isNight()) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
+
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }

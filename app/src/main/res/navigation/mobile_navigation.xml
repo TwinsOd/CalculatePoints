@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_info" />
     <fragment
         android:id="@+id/newGameFragment"
-        android:name="od.twins.clabr.ui.newGame.NewGameFragment"
+        android:name="od.twins.clabr.ui.startSettings.NewGameFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game">
         <action

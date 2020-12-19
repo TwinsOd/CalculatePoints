@@ -16,6 +16,7 @@
     <string name="used_names">Ранее использованые имена</string>
     <string name="rules">Правила</string>
     <string name="games">Игры</string>
+    <string name="choose_game_mode">Выберите режим</string>
 
     <string-array name="game_case_list">
         <item>Бейт</item>

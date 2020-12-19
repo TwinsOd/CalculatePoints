@@ -16,8 +16,8 @@ import od.twins.clabr.models.GameType
 import od.twins.clabr.models.LimitPoints
 import od.twins.clabr.ui.names.dummy.DummyContent
 import od.twins.clabr.ui.names.dummy.DummyContent.DummyItem
-import od.twins.clabr.ui.newGame.ARG_GAME_TYPE
-import od.twins.clabr.ui.newGame.ARG_POINT_LIMIT
+import od.twins.clabr.ui.startSettings.ARG_GAME_TYPE
+import od.twins.clabr.ui.startSettings.ARG_POINT_LIMIT
 
 
 private const val TAG = "NamesFragment"
