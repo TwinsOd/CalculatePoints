@@ -8,71 +8,73 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
         android:orientation="vertical"
         tools:context=".ui.names.NamesFragment">
 
+        <ImageView
+            android:id="@+id/back_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/ic_arrow_back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/parent_margin"
+            android:layout_marginEnd="@dimen/parent_margin"
+            android:paddingStart="4dp"
             android:text="@string/fill_players_name"
             android:textSize="@dimen/title_size" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/player_1"
-            style="@style/name_input_layout"
-            android:hint="@string/player_1"
-            app:counterMaxLength="20">
+        <TextView
+            style="@style/name_title"
+            android:text="@string/player_1" />
 
-            <com.google.android.material.textfield.TextInputEditText style="@style/name_edit_view" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/player_2"
-            style="@style/name_input_layout"
-            android:hint="@string/player_2"
-            app:counterMaxLength="20">
-
-            <com.google.android.material.textfield.TextInputEditText style="@style/name_edit_view" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/player_3"
-            style="@style/name_input_layout"
-            android:hint="@string/player_3"
-            app:counterMaxLength="20">
-
-            <com.google.android.material.textfield.TextInputEditText style="@style/name_edit_view" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/player_4"
-            style="@style/name_input_layout"
-            android:hint="@string/player_4"
-            app:counterMaxLength="20">
-
-            <com.google.android.material.textfield.TextInputEditText style="@style/name_edit_view" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <AutoCompleteTextView
+            android:id="@+id/player_1_auto"
+            style="@style/name_auto_complete"
+            android:hint="@string/type_name" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/used_names"
-            android:textSize="@dimen/title_size" />
+            style="@style/name_title"
+            android:text="@string/player_2" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/names_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/item_names" />
+        <AutoCompleteTextView
+            android:id="@+id/player_2_auto"
+            style="@style/name_auto_complete"
+            android:hint="@string/type_name" />
+
+        <TextView
+            android:id="@+id/title_3"
+            style="@style/name_title"
+            android:text="@string/player_3"
+            android:visibility="gone" />
+
+        <AutoCompleteTextView
+            android:id="@+id/player_3_auto"
+            style="@style/name_auto_complete"
+            android:hint="@string/type_name"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_4"
+            style="@style/name_title"
+            android:text="@string/player_4"
+            android:visibility="gone" />
+
+        <AutoCompleteTextView
+            android:id="@+id/player_4_auto"
+            style="@style/name_auto_complete"
+            android:hint="@string/type_name"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/next_view"
+        style="@style/next_fab"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/next_fab" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

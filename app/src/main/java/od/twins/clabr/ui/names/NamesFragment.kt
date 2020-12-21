@@ -1,34 +1,43 @@
 package od.twins.clabr.ui.names
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_names.*
+import od.twins.clabr.AppConstants
 import od.twins.clabr.R
+import od.twins.clabr.data.models.GameSetting
 import od.twins.clabr.model.GameMode
-import od.twins.clabr.model.LimitPoints
-import od.twins.clabr.ui.names.dummy.DummyContent
-import od.twins.clabr.ui.names.dummy.DummyContent.DummyItem
+import od.twins.clabr.ui.startSettings.ARG_SETTINGS
+import timber.log.Timber
 
-
-private const val TAG = "NamesFragment"
-
-class NamesFragment : Fragment(), View.OnFocusChangeListener {
-    private var listener: OnListFragmentInteractionListener? = null
-    private var gameMode: GameMode? = null
-    private var pointLimit: LimitPoints? = null
+@AndroidEntryPoint
+class NamesFragment : Fragment() {
+    private lateinit var gameSetting: GameSetting
+    private val nameViewModel: NamesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            gameMode = it.get(ARG_GAME_TYPE) as GameMode
-//            pointLimit = it.get(ARG_POINT_LIMIT) as LimitPoints
-//        }
+        arguments?.let {
+            val json = it.get(ARG_SETTINGS) as String
+            val moshi = Moshi.Builder().build()
+            val jsonAdapter: JsonAdapter<GameSetting> = moshi.adapter(GameSetting::class.java)
+            gameSetting = jsonAdapter.fromJson(json) ?: GameSetting(
+                GameMode.TWO_ON_TWO,
+                AppConstants.LIMIT_1001,
+                AppConstants.PENALTY_OF_BEITS_100,
+                AppConstants.LENGTH_OF_BEITS_3
+            )
+        }
     }
 
     override fun onCreateView(
@@ -41,58 +50,66 @@ class NamesFragment : Fragment(), View.OnFocusChangeListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        names_list.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = NameRecyclerViewAdapter(DummyContent.ITEMS, listener)
+        back_view.setOnClickListener { activity?.onBackPressed() }
+
+        var nameList: List<String> = emptyList()
+        nameViewModel.nameList.observe(viewLifecycleOwner) {
+            nameList = it.map { item -> item.value }
+            val adapter = ArrayAdapter(view.context, android.R.layout.simple_list_item_1, nameList)
+            player_1_auto.setAdapter(adapter)
+            player_2_auto.setAdapter(adapter)
+
+            when (gameSetting.gameMode) {
+                GameMode.TWO_ON_TWO -> {
+                    initAutoComplete3Players(adapter)
+                    initAutoComplete4Players(adapter)
+                }
+                GameMode.TWO -> {
+
+                }
+                GameMode.THREE -> {
+                    initAutoComplete3Players(adapter)
+                }
+            }
         }
 
         next_view.setOnClickListener { v ->
-//            when (gameMode) {
-//                GameMode.TWO, GameMode.THREE ->
-//                    Toast.makeText(view.context, "In development", Toast.LENGTH_LONG).show()
-//                GameMode.TWO_ON_TWO -> {
-            Navigation.findNavController(v)
-                .navigate(R.id.action_namesFragment_to_twoTwoCalculateFragment)
-//                }
-//            }
+            when (gameSetting.gameMode) {
+                GameMode.TWO, GameMode.THREE ->
+                    Toast.makeText(view.context, "In development", Toast.LENGTH_LONG).show()
+                GameMode.TWO_ON_TWO -> {
+                    if (nameViewModel.checkFill(
+                            player_1_auto.text.toString(), player_2_auto.text.toString(),
+                            player_3_auto.text.toString(), player_4_auto.text.toString()
+                        )
+                    ) {
+                        nameViewModel.saveNames(
+                            nameList, listOf(
+                                player_1_auto.text.toString(), player_2_auto.text.toString(),
+                                player_3_auto.text.toString(), player_4_auto.text.toString()
+                            )
+                        )
+                        Navigation.findNavController(v)
+                            .navigate(R.id.action_namesFragment_to_twoTwoCalculateFragment)
+                    } else {
+                        Toast.makeText(view.context, "Заполните имена", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+
+            Timber.i("text %s", player_1_auto.text)
         }
-
-        player_1.editText?.onFocusChangeListener = this
-        player_2.editText?.onFocusChangeListener = this
-//        val player3Layout: TextInputLayout = root.findViewById(R.id.player_3)
-//        val player4Layout: TextInputLayout = root.findViewById(R.id.player_4)
-//        val player1editText = TextInputEditText(player1Layout.context);
-
-        Log.i(TAG, "onCreateView gameType=$gameMode")
-
-//        when (gameMode) {
-//            GameMode.TWO -> {
-//                player_3.visibility = GONE
-//                player_4.visibility = GONE
-//            }
-//            GameMode.THREE -> player_4.visibility = GONE
-//            GameMode.TWO_ON_TWO -> {
-//                //выделить по групам
-////                player1Layout.boxStrokeColor = resources.getColor(R.color.light_grey)
-////                player2Layout.boxStrokeColor = resources.getColor(R.color.blue_grey)
-////                player3Layout.boxStrokeColor = resources.getColor(R.color.light_grey)
-////                player4Layout.boxStrokeColor = resources.getColor(R.color.blue_grey)
-//            }
-//        }
     }
 
-    interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+    private fun initAutoComplete3Players(adapter: ArrayAdapter<String>) {
+        title_3.visibility = View.VISIBLE
+        player_3_auto.visibility = View.VISIBLE
+        player_3_auto.setAdapter(adapter)
     }
 
-    override fun onFocusChange(v: View?, hasFocus: Boolean) {
-//        Log.i(TAG, "onFocusChange")
-//        Toast.makeText(v?.context, "onFocusChange", Toast.LENGTH_LONG).show()
-//        when(v?.id){
-//            R.id.player_1 -> player1Layout.editText?.setText("Misha")
-//            R.id.player_2 -> player1Layout.editText?.setText("YAN")
-//        }
-        Log.i(TAG, "onFocusChange")
+    private fun initAutoComplete4Players(adapter: ArrayAdapter<String>) {
+        title_4.visibility = View.VISIBLE
+        player_4_auto.visibility = View.VISIBLE
+        player_4_auto.setAdapter(adapter)
     }
 }

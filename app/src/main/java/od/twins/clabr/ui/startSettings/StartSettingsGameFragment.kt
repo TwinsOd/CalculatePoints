@@ -51,6 +51,7 @@ class StartSettingsGameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         updateUI()
 
+        back_view.setOnClickListener { activity?.onBackPressed() }
         next_view.setOnClickListener { v ->
             val moshi = Moshi.Builder().build()
             val jsonAdapter: JsonAdapter<GameSetting> = moshi.adapter(GameSetting::class.java)

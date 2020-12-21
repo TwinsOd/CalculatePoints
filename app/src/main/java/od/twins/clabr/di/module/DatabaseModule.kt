@@ -27,5 +27,8 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideAssessmentDao(database: ClaborDatabase) = database.getGameDao()
+    fun provideGameDao(database: ClaborDatabase) = database.getGameDao()
+
+    @Provides
+    fun provideNameDao(database: ClaborDatabase) = database.getNameDao()
 }

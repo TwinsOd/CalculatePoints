@@ -10,7 +10,7 @@ interface GameDao {
     fun getAll(): Flow<List<Game>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(assessorDB: Game)
+    suspend fun insert(game: Game)
 
     @Query("DELETE FROM ${Game.TABLE_NAME}")
     suspend fun deleteAll()

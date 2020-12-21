@@ -24,6 +24,7 @@
     <string name="in_development">In development</string>
     <string name="PenaltyForSeriousOfBeits">Штраф за серию бейтов</string>
     <string name="length_of_series_of_beits">Длина серии бейтов</string>
+    <string name="type_name">Введите имя</string>
 
     <string-array name="game_case_list">
         <item>Бейт</item>
