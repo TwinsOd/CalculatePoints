@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import od.twins.clabr.R
+import od.twins.clabr.utils.PrefUtil
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
             AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
         dark_mode_box.setOnCheckedChangeListener { buttonView, isChecked ->
             AppCompatDelegate.setDefaultNightMode(if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
+            PrefUtil.setDarkMode(isChecked, buttonView.context)
             activity?.recreate()
         }
 
