@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_new_game.*
+import kotlinx.android.synthetic.main.fragment_start_settings.*
 import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_1
 import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_3
 import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_5
@@ -28,10 +28,8 @@ import od.twins.clabr.utils.PrefUtil
 const val ARG_SETTINGS = "arg_settings"
 
 @AndroidEntryPoint
-class NewGameFragment : Fragment() {
-    val TAG = "NewGameFragment"
-
-    lateinit var gameSetting: GameSetting
+class StartSettingsGameFragment : Fragment() {
+    private lateinit var gameSetting: GameSetting
     private val startSettingsViewModel: StartSettingsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +44,7 @@ class NewGameFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_new_game, container, false)
+        return inflater.inflate(R.layout.fragment_start_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

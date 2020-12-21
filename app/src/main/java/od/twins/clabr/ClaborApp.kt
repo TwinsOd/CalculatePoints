@@ -6,7 +6,7 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import od.twins.clabr.utils.isNight
+import od.twins.clabr.utils.PrefUtil
 import timber.log.Timber
 
 @HiltAndroidApp
@@ -20,7 +20,7 @@ class ClaborApp : Application() {
         }
 
         // Get UI mode and set
-        val mode = if (isNight()) {
+        val mode = if (PrefUtil.getDarkMode(this)) {
             AppCompatDelegate.MODE_NIGHT_YES
         } else {
             AppCompatDelegate.MODE_NIGHT_NO

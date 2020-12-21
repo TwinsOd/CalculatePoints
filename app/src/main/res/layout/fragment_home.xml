@@ -31,6 +31,13 @@
                 android:textColor="@color/light_grey"
                 android:textSize="52sp" />
 
+            <CheckBox
+                android:id="@+id/dark_mode_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:text="Dark mode" />
+
             <LinearLayout
                 android:id="@+id/rules_layout"
                 android:layout_width="match_parent"

@@ -45,17 +45,17 @@ class PrefUtil {
         }
 
 
-//        private const val LengthForSeriousOfBeits = "com.clabor.length_for_beits"
-//
-//        fun getLengthForSeriousOfBeits(context: Context): Int {
-//            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-//            return preferences.getInt(LengthForSeriousOfBeits, 3)
-//        }
-//
-//        fun setLengthForSeriousOfBeits(length: Int, context: Context) {
-//            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-//            editor.putInt(LengthForSeriousOfBeits, length)
-//            editor.apply()
-//        }
+        private const val DARK_MODE = "com.clabor.dark_mode"
+
+        fun getDarkMode(context: Context): Boolean {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getBoolean(DARK_MODE, true)
+        }
+
+        fun setDarkMode(isDarkMode: Boolean, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putBoolean(DARK_MODE, isDarkMode)
+            editor.apply()
+        }
     }
 }
