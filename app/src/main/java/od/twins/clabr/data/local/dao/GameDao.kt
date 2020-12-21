@@ -2,7 +2,7 @@ package od.twins.clabr.data.local.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import od.twins.clabr.models.Game
+import od.twins.clabr.model.Game
 
 @Dao
 interface GameDao {

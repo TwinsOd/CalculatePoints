@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import od.twins.clabr.data.local.converter.CountModelConverter
 import od.twins.clabr.data.local.converter.PlayerConverter
 import od.twins.clabr.data.local.dao.GameDao
-import od.twins.clabr.models.Game
+import od.twins.clabr.model.Game
 
 @Database(entities = [Game::class], version = 1, exportSchema = false)
 @TypeConverters(CountModelConverter::class, PlayerConverter::class)

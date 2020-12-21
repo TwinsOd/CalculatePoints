@@ -2,7 +2,7 @@ package od.twins.clabr.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import od.twins.clabr.data.local.dao.GameDao
-import od.twins.clabr.models.Game
+import od.twins.clabr.model.Game
 import javax.inject.Inject
 
 class DataBaseRepository @Inject constructor(

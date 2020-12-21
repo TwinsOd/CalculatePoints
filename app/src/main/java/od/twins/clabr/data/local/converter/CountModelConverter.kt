@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import od.twins.clabr.models.CountModel
+import od.twins.clabr.data.models.CountModel
 import java.util.*
 
 class CountModelConverter {

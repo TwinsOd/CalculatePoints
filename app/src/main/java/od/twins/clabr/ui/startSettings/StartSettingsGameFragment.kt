@@ -4,72 +4,111 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_new_game.*
+import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_1
+import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_3
+import od.twins.clabr.AppConstants.Companion.LENGTH_OF_BEITS_5
+import od.twins.clabr.AppConstants.Companion.LIMIT_1001
+import od.twins.clabr.AppConstants.Companion.LIMIT_501
+import od.twins.clabr.AppConstants.Companion.PENALTY_OF_BEITS_100
+import od.twins.clabr.AppConstants.Companion.PENALTY_OF_BEITS_200
+import od.twins.clabr.AppConstants.Companion.PENALTY_OF_BEITS_300
+import od.twins.clabr.AppConstants.Companion.PENALTY_OF_BEITS_50
 import od.twins.clabr.R
-import od.twins.clabr.models.GameType
-import od.twins.clabr.models.LimitPoints
+import od.twins.clabr.data.models.GameSetting
+import od.twins.clabr.model.GameMode
+import od.twins.clabr.utils.PrefUtil
 
-public const val ARG_GAME_TYPE = "arg_game_type"
-public const val ARG_POINT_LIMIT = "arg_point_limit"
+const val ARG_SETTINGS = "arg_settings"
 
+@AndroidEntryPoint
 class NewGameFragment : Fragment() {
     val TAG = "NewGameFragment"
-    private var gameType: GameType? = null
-    private var pointLimit: LimitPoints? = null
+
+    lateinit var gameSetting: GameSetting
+    private val startSettingsViewModel: StartSettingsViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        context?.let {
+            gameSetting = PrefUtil.getGameSettings(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root: View = inflater.inflate(R.layout.fragment_new_game, container, false)
-        val nextView: FloatingActionButton = root.findViewById(R.id.next_view)
-        nextView.setOnClickListener { v ->
-            when {
-                gameType == null -> {
-                    Toast.makeText(v.context, "Check type", Toast.LENGTH_LONG).show()
+        return inflater.inflate(R.layout.fragment_new_game, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateUI()
+
+        next_view.setOnClickListener { v ->
+            val moshi = Moshi.Builder().build()
+            val jsonAdapter: JsonAdapter<GameSetting> = moshi.adapter(GameSetting::class.java)
+            val json = jsonAdapter.toJson(gameSetting)
+            PrefUtil.setGameSettings(json, v.context)
+
+            val bundle = Bundle()
+            bundle.putSerializable(ARG_SETTINGS, json)
+            Navigation.findNavController(v)
+                .navigate(R.id.action_newGameFragment_to_namesFragment, bundle)
+        }
+        type_game_toggle_button.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (isChecked)
+                run {
+                    when (checkedId) {
+                        R.id.two_button -> gameSetting.gameMode = GameMode.TWO
+                        R.id.three_button -> gameSetting.gameMode = GameMode.THREE
+//                        R.id.four_button -> gameSetting.gameType = GameType.FOUR
+                        R.id.pair_button -> gameSetting.gameMode = GameMode.TWO_ON_TWO
+                    }
                 }
-                pointLimit == null -> {
-                    Toast.makeText(v.context, "Check points", Toast.LENGTH_LONG).show()
+        }
+        point_limit_toggle_button.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            if (isChecked)
+                run {
+                    when (checkedId) {
+                        R.id.small_game -> gameSetting.pointLimit = LIMIT_501
+                        R.id.big_game -> gameSetting.pointLimit = LIMIT_1001
+                    }
                 }
-                else -> run {
-                    val bundle = Bundle()
-                    bundle.putSerializable(ARG_GAME_TYPE, gameType)
-                    bundle.putSerializable(ARG_POINT_LIMIT, pointLimit)
-                    Navigation.findNavController(v)
-                        .navigate(R.id.action_newGameFragment_to_namesFragment, bundle)
-                }
-            }
+        }
+    }
+
+    private fun updateUI() {
+        when (gameSetting.gameMode) {
+            GameMode.TWO_ON_TWO -> type_game_toggle_button.check(R.id.pair_button)
+            GameMode.TWO -> type_game_toggle_button.check(R.id.two_button)
+            GameMode.THREE -> type_game_toggle_button.check(R.id.three_button)
         }
 
-        val typeGameView: MaterialButtonToggleGroup =
-            root.findViewById(R.id.type_game_toggle_button)
-        typeGameView.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            if (isChecked)
-                run {
-                    when (checkedId) {
-                        R.id.two_button -> gameType = GameType.TWO
-                        R.id.three_button -> gameType = GameType.THREE
-//                        R.id.four_button -> gameType = GameType.FOUR
-                        R.id.pair_button -> gameType = GameType.TWO_ON_TWO
-                    }
-                }
+        when (gameSetting.pointLimit) {
+            LIMIT_501 -> point_limit_toggle_button.check(R.id.small_game)
+            LIMIT_1001 -> point_limit_toggle_button.check(R.id.big_game)
         }
-        val pointLimitView: MaterialButtonToggleGroup =
-            root.findViewById(R.id.point_limit_toggle_button)
-        pointLimitView.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            if (isChecked)
-                run {
-                    when (checkedId) {
-                        R.id.small_game -> pointLimit = LimitPoints.SMALL
-                        R.id.big_game -> pointLimit = LimitPoints.BIG
-                    }
-                }
+
+        when (gameSetting.penaltyForSeriousOfBeits) {
+            PENALTY_OF_BEITS_50 -> penalty_for_beits.check(R.id.pints_50)
+            PENALTY_OF_BEITS_100 -> penalty_for_beits.check(R.id.pints_100)
+            PENALTY_OF_BEITS_200 -> penalty_for_beits.check(R.id.pints_200)
+            PENALTY_OF_BEITS_300 -> penalty_for_beits.check(R.id.pints_300)
         }
-        return root
+
+        when (gameSetting.length_of_series_of_beits) {
+            LENGTH_OF_BEITS_1 -> length_of_series_of_beits.check(R.id.length_of_series_of_beits_1)
+            LENGTH_OF_BEITS_3 -> length_of_series_of_beits.check(R.id.length_of_series_of_beits_3)
+            LENGTH_OF_BEITS_5 -> length_of_series_of_beits.check(R.id.length_of_series_of_beits_5)
+        }
     }
 }

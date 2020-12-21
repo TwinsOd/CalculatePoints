@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
     tools:context=".ui.startSettings.NewGameFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -21,13 +19,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:src="@drawable/ic_arrow_back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="@dimen/parent_margin"
+                android:layout_marginEnd="16dp"
                 android:text="@string/choose_game_mode"
                 android:textSize="@dimen/title_size" />
 
@@ -35,16 +35,18 @@
                 android:id="@+id/type_game_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:singleSelection="true">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/two_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1 х 1" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/three_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
@@ -58,7 +60,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="4 х 1" />-->
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/pair_button"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
@@ -70,42 +72,57 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="@dimen/parent_margin"
+                android:layout_marginEnd="16dp"
                 android:text="До скольких игра?"
                 android:textSize="@dimen/title_size" />
 
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/point_limit_toggle_button"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/point_limit_toggle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/small_game"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:singleSelection="true">
+                    android:text="501" />
 
-                    <Button
-                        android:id="@+id/small_game"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="501" />
+                <Button
+                    android:id="@+id/big_game"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1001" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
-                    <Button
-                        android:id="@+id/big_game"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1001" />
-                </com.google.android.material.button.MaterialButtonToggleGroup>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="16dp"
+                android:background="@drawable/start_button_background" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="@dimen/parent_margin"
-                android:text="Штраф за серию бейтов"
+                android:layout_marginEnd="16dp"
+                android:text="@string/PenaltyForSeriousOfBeits"
                 android:textSize="@dimen/title_size" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/penalty_for_beits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:singleSelection="true">
 
                 <Button
@@ -141,29 +158,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="@dimen/parent_margin"
-                android:text="Длина серии бейтов"
+                android:layout_marginEnd="16dp"
+                android:text="@string/length_of_series_of_beits"
                 android:textSize="@dimen/title_size" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/length_of_series_of_beits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:singleSelection="true">
 
                 <Button
+                    android:id="@+id/length_of_series_of_beits_1"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1" />
 
                 <Button
+                    android:id="@+id/length_of_series_of_beits_3"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3" />
 
                 <Button
+                    android:id="@+id/length_of_series_of_beits_5"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -176,8 +200,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/next_view"
+        style="@style/next_fab"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/next_fab" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

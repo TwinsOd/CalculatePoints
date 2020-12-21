@@ -1,4 +1,4 @@
-package od.twins.clabr.models
+package od.twins.clabr.data.models
 
 import com.squareup.moshi.JsonClass
 

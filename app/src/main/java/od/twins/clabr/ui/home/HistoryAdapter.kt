@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_user.view.*
 import od.twins.clabr.R
-import od.twins.clabr.models.Game
+import od.twins.clabr.model.Game
 
 class HistoryAdapter(var game: ArrayList<Game>) :
     RecyclerView.Adapter<HistoryAdapter.HistoryHolder>() {
